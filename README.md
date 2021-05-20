@@ -1,5 +1,5 @@
 # Crappy Bird
-*A year ago, a beginner Python programmer decided to make Flappy Bird but fill it with crap.
+*A year ago, a beginner Python programmer decided to make his first game: Flappy Bird but fill it with crap.
 Using PyGame Zero - the beginner-friendly version of PyGame - and Piskel for crappy pixel art, he made it.*
 
 To preserve authenticity, the original badly written code had never been changed or refactored, and is here in its full glory. I might create a repository with cleaner modern code later on. Soon™. But for now, you'll find:
