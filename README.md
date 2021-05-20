@@ -17,7 +17,6 @@ You will need to install PyGame Zero in order to play. [See the documentation he
 Have fun!
 
 ## Backstory - read if your shell doesn't work
---------------------
 Welcome to Crappy Bird!!
 
 Controls:
@@ -28,4 +27,3 @@ The year was 2013. Flappy Bird had the most glorious time ever. People were lovi
 
 Credits:
 Made in Python, game directly inspired by Flappy Bird. This is a fan-made version. Music - Nyan Cat(Original)
---------------------
