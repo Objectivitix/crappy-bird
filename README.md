@@ -1,4 +1,4 @@
-# crappy-bird
+# Crappy Bird
 *A year ago, a beginner Python programmer decided to make Flappy Bird but fill it with crap.
 Using PyGame Zero - the beginner-friendly version of PyGame - and Piskel for crappy pixel art, he made it.*
 
