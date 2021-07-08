@@ -29,8 +29,7 @@ print("--------------------\n\n\n")
 
 while True:
     try:
-        difficulty = int(
-            input('\nSelect difficulty. Type 1, 2, or 3. \n1 = Easy, \n2 = Medium, \n3 = Hard.   '))
+        difficulty = int(input('\nSelect difficulty. Type 1, 2, or 3. \n1 = Easy, \n2 = Medium, \n3 = Hard.   '))
     except ValueError:
         print('You did not enter a valid input. Please try again.')
     else:
