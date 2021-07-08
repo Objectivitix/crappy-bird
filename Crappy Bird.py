@@ -4,7 +4,26 @@ import math, pgzrun
 WIDTH = 600
 HEIGHT = 600
 
-print('\n\n--------------------\nWelcome to Crappy Bird!!\n\nControls:\nSpace or up arrow to fart, s or down arrow to dive.\n\nBackstory:\nThe year was 2013. Flappy Bird had the most glorious time ever. People were loving him, praising him, he was the king of mobile arcade games. However, it didn\'t last long. Soon came the hate. Flappy Bird was insulted, discriminated, and abandonned. He lost his throne, and was exiled to the Craplands. There, he was tortured by the smell of the place and its inhabitants. Life was awful. Flappy Bird became Crappy Bird. Now, he couldn\'t take it anymore. He flies around Craplands looking for a road to freedom, a road that leads out of misery.\n\nCredits:\nMade in Python, game directly inspired by Flappy Bird. This is a fan-made version. Music - Nyan Cat(Original)\n--------------------\n\n\n')
+print("\n\n--------------------")
+print("Welcome to Crappy Bird!!\n")
+print("Controls:")
+print("Space or up arrow to fart, s or down arrow to dive.\n")
+
+print("Backstory:")
+print("The year was 2013. Flappy Bird had the most glorious time ever.")
+print("People were loving him, praising him, he was the king of mobile arcade games.")
+print("However, it didn't last long.")
+print("Soon came the hate. Flappy Bird was insulted, discriminated, and abandonned.")
+print("He lost his throne, and was exiled to the Craplands.")
+print("There, he was tortured by the smell of the place and its inhabitants. Life was awful.")
+print("Flappy Bird became Crappy Bird.")
+print("Now, he couldn't take it anymore.")
+print("He flies around Craplands looking for a road to freedom, a road that leads out of misery.\n")
+
+print("Credits:")
+print("Made in Python, game directly inspired by Flappy Bird.", end="")
+print("This is a fan-made version. Music - Nyan Cat(Original)")
+print("--------------------\n\n\n")
 
 while True:
     try:
@@ -30,10 +49,13 @@ bossTime = False
 bossOnce = True
 endFart = True
 
-obstacles = [Actor('obstacle-1-1', (700, 300)),
-             Actor('obstacle-1-2', (700, 300)),
-             Actor('obstacle-2-1', (700, 300)),
-             Actor('obstacle-2-2', (700, 300))]
+obstacles = [
+    Actor('obstacle-1-1', (700, 300)),
+    Actor('obstacle-1-2', (700, 300)),
+    Actor('obstacle-2-1', (700, 300)),
+    Actor('obstacle-2-2', (700, 300))
+]
+
 monster = Actor('crap-monster', (700, 300))
 poopBoss = Actor('poop-bot', (800, 300))
 nuke = Actor('nuke', (900, 300))
@@ -147,7 +169,7 @@ def monster_time():
     global monsterSpeed
     monsterY = [randint(-100, -60), randint(60, 100)]
     monster.pos = (700, bird.y+monsterY[randint(0,1)])
-    if (not gameOver) and (gameStart) and (not victory):
+    if not gameOver and gameStart and not victory:
         animate(monster, pos=(-100, monster.y), duration=monsterSpeed)
         clock.schedule(monster_time, monsterSpeed*2)
         if monsterSpeed > 1.4 - difficulty/7:
