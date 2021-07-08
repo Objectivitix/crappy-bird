@@ -1,5 +1,7 @@
+import math
 from random import randint
-import math, pgzrun
+import pgzrun
+
 
 WIDTH = 600
 HEIGHT = 600
@@ -27,10 +29,12 @@ print("--------------------\n\n\n")
 
 while True:
     try:
-        difficulty = int(input('\nSelect difficulty. Type 1, 2, or 3. \n1 = Easy, \n2 = Medium, \n3 = Hard.   '))
-        break
-    except:
+        difficulty = int(
+            input('\nSelect difficulty. Type 1, 2, or 3. \n1 = Easy, \n2 = Medium, \n3 = Hard.   '))
+    except ValueError:
         print('You did not enter a valid input. Please try again.')
+    else:
+        break
 
 print('\nHave fun!')
 
@@ -63,11 +67,12 @@ bird = Actor('crapbird', (difficulty*90, 200))
 portal = Actor('portal', (700, 300))
 victoryIndicator = Actor('victory', (300, 200))
 
+
 def draw():
     global endFart
     if not gameOver and gameStart:
         if not victory:
-            screen.blit('crappedcity', (0,0))
+            screen.blit('crappedcity', (0, 0))
             screen.draw.text('Score: '+str(score), topleft=(20, 20), fontsize=30)
             screen.draw.text('High score: '+str(highScore), topleft=(20, 45), fontsize=30)
             for i in range(0, 4):
@@ -79,10 +84,11 @@ def draw():
             portal.draw()
         else:
             music.stop()
-            screen.blit('normalcity', (0,0))
+            screen.blit('normalcity', (0, 0))
             screen.draw.text('Score: '+str(score), topleft=(20, 20), fontsize=30)
             screen.draw.text('High score: '+str(highScore), topleft=(20, 45), fontsize=30)
-            screen.draw.text('You helped Flappy Bird escape Craplands!', center=(300, 320), fontsize=35, color='black')
+            screen.draw.text('You helped Flappy Bird escape Craplands!',
+                             center=(300, 320), fontsize=35, color='black')
             bird.draw()
             victoryIndicator.draw()
     elif gameOver:
@@ -94,7 +100,7 @@ def draw():
         clock.schedule(game_over, 0.3)
     else:
         screen.draw.text('PRESS SPACE TO START', center=(300, 300), fontsize=60)
-        
+
 
 def update():
     global Yv, gameOver, gameStart, score, bossTime, bossOnce, victory, highScore
@@ -116,7 +122,8 @@ def update():
             if score > float(highScore):
                 with open('highscore.txt', 'w') as f:
                     f.write(str(score))
-            if bird.y < 100: bird.y = 100
+            if bird.y < 100:
+                bird.y = 100
             if score > 100 and bossOnce:
                 bossTime = True
                 bossOnce = False
@@ -141,6 +148,7 @@ def update():
             clock.schedule(spawn_obstacles_two, 4.5)
             clock.schedule(monster_time, 4.5)
 
+
 def spawn_obstacles_one():
     global obstacles, obsSpeed
     if (not gameOver) and (gameStart) and (not bossTime) and (not victory):
@@ -152,6 +160,7 @@ def spawn_obstacles_one():
         clock.schedule(spawn_obstacles_one, obsSpeed)
         if obsSpeed > 1.8 - difficulty/7:
             obsSpeed -= difficulty*0.05
+
 
 def spawn_obstacles_two():
     global obstacles, obsSpeed
@@ -165,27 +174,31 @@ def spawn_obstacles_two():
         if obsSpeed > 1.8 - difficulty/7:
             obsSpeed -= difficulty*0.05
 
+
 def monster_time():
     global monsterSpeed
     monsterY = [randint(-100, -60), randint(60, 100)]
-    monster.pos = (700, bird.y+monsterY[randint(0,1)])
+    monster.pos = (700, bird.y+monsterY[randint(0, 1)])
     if not gameOver and gameStart and not victory:
         animate(monster, pos=(-100, monster.y), duration=monsterSpeed)
         clock.schedule(monster_time, monsterSpeed*2)
         if monsterSpeed > 1.4 - difficulty/7:
             monsterSpeed -= difficulty*0.05
 
+
 def boss_time():
     if bossShot < 8:
         animate(poopBoss, pos=(480, randint(150, 450)), duration=1, on_finished=boss_shoot)
     else:
         animate(poopBoss, pos=(800, 300), duration=1, on_finished=back_to_normal)
-          
+
+
 def boss_shoot():
     global bossShot
     bossShot += 1
     nuke.pos = (900, poopBoss.y)
     animate(nuke, pos=(-200, poopBoss.y), duration=1.6, on_finished=boss_time)
+
 
 def back_to_normal():
     global bossTime, score
@@ -194,13 +207,16 @@ def back_to_normal():
     clock.schedule(spawn_obstacles_one, obsSpeed+1)
     clock.schedule(spawn_obstacles_two, obsSpeed/2+obsSpeed+1)
     clock.schedule(monster_time, 4.5)
-        
+
+
 def game_over():
-    screen.blit('poop-on-the-haters', (0,0))
+    screen.blit('poop-on-the-haters', (0, 0))
+
 
 def score_up():
     global score
     if (not gameOver) and (not victory):
         score += 1
-    
+
+
 pgzrun.go()
